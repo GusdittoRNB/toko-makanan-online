@@ -48,7 +48,7 @@ public class tokoMakanan {
             System.out.println("3. Keluar");
             System.out.print("Masukkan Pilihan Anda: ");
             pilihan = input.nextInt();
-            input.nextLine(); //pindah baris atau enter
+            input.nextLine(); //menggunakan satu baris baru
 
             switch(pilihan) {
                 case 1:
@@ -62,23 +62,25 @@ public class tokoMakanan {
                         cek = true;
                         adminLogin(input);
                     } else {
-                        System.out.println("Password Salah");
+                        System.out.println("\nPassword Salah");
                     }
                     break;
                 case 3:
-                    System.out.println("Terima Kasih Telah Menggunakan Program Ini");
+                    System.out.println("\nTerima Kasih Telah Menggunakan Program Ini");
                     break;
                 default:
-                    System.out.println("Masukkan Tidak Valid, Silahkan Ulangi");
+                    System.out.println("\nMasukkan Tidak Valid, Silahkan Ulangi");
                     break;
             }
         }
     }
 
+    //method untuk menampilkan login admin
     static void adminLogin(Scanner input){
         int pilihan = 0;
 
         while(pilihan != 4) {
+            //tampilkan menu dari login admin
             System.out.println("\n=== Admin Login ===");
             System.out.println("1. Lihat Restaurant");
             System.out.println("2. Tambah Restaurant");
@@ -91,13 +93,63 @@ public class tokoMakanan {
             switch(pilihan) {
                 case 1:
                     System.out.println("\n=== Daftar Restaurant ===");
-                    for(String restaurantName : restaurants.keySet()) {
+                    for (String restaurantName : restaurants.keySet()) {
                         System.out.println("\n" + restaurantName + " - " + restaurants.get(restaurantName).getAddress());
                         System.out.println("Menu: ");
-                        for(Menu menu : restaurants.get(restaurantName).getMenus()) {
+                        for (Menu menu : restaurants.get(restaurantName).getMenus()) {
                             System.out.println(menu.getName() + " - " + menu.getPrice());
                         }
                     }
+                    break;
+                case 2:
+                    System.out.print("\nMasukkan Nama Restaurant: ");
+                    String name = input.nextLine();
+                    System.out.print("Masukkan Alamat Restaurant: ");
+                    String address = input.nextLine();
+
+                    Restaurant newRestaurant = new Restaurant(name, address);
+
+                    String inputMenu = "";
+                    int inputHarga = 0;
+                    String inputPilihan = "";
+
+                    while (!inputPilihan.equals("n")) {
+                        System.out.print("Masukkan Nama Menu: ");
+                        inputMenu = input.nextLine();
+                        System.out.print("Masukkan Harga Menu: ");
+                        inputHarga = input.nextInt();
+                        input.nextLine();
+
+                        newRestaurant.addMenu(new Menu(inputMenu, inputHarga));
+
+                        System.out.print("Apakah Ingin Menambah Menu Lagi? (y/n): ");
+                        inputPilihan = input.nextLine();
+                    }
+                    restaurants.put(name, newRestaurant);
+                    System.out.println("\nRestaurant Berhasil Ditambahkan");
+                    break;
+                case 3:
+                    String inputTanya = "";
+                    System.out.print("\nMasukkan Nama Restaurant: ");
+                    String restaurantName = input.nextLine();
+                    if(restaurants.containsKey(restaurantName)) {
+                        System.out.print("Apakah Yakin Untuk Menghapusnya? (y/n): ");
+                        inputTanya = input.nextLine();
+                        if(inputTanya.equals("y")) {
+                            restaurants.remove(restaurantName);
+                            System.out.println("\nRestaurant Berhasil Dihapus");
+                        }else {
+                            System.out.println("\nRestaurant Tidak Berhasil Dihapus");
+                        }
+                    }else {
+                            System.out.println("\nRestaurant Tidak Ditemukan");
+                        }
+                    break;
+                case 4:
+                    boolean cek = false;
+                    break;
+                default:
+                    System.out.println("\nMasukkan Tidak Valid, Silahkan Ulangi");
                     break;
             }
         }
