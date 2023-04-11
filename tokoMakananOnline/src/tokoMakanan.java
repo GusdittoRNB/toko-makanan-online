@@ -45,7 +45,7 @@ public class tokoMakanan {
             System.out.println("\n=== Toko Makanan Online ===");
             System.out.println("1. Customer Login");
             System.out.println("2. Admin Login");
-            System.out.println("3. Exit");
+            System.out.println("3. Keluar");
             System.out.print("Masukkan Pilihan Anda: ");
             pilihan = input.nextInt();
             input.nextLine(); //pindah baris atau enter
@@ -55,12 +55,12 @@ public class tokoMakanan {
                     //customerLogin(input);
                     break;
                 case 2:
-                    System.out.print("Masukkan password: ");
+                    System.out.print("Masukkan Password: ");
                     String password = input.nextLine();
 
                     if (password.equals("admin123")) {
                         cek = true;
-                        //adminLogin(input);
+                        adminLogin(input);
                     } else {
                         System.out.println("Password Salah");
                     }
@@ -70,6 +70,34 @@ public class tokoMakanan {
                     break;
                 default:
                     System.out.println("Masukkan Tidak Valid, Silahkan Ulangi");
+                    break;
+            }
+        }
+    }
+
+    static void adminLogin(Scanner input){
+        int pilihan = 0;
+
+        while(pilihan != 4) {
+            System.out.println("\n=== Admin Login ===");
+            System.out.println("1. Lihat Restaurant");
+            System.out.println("2. Tambah Restaurant");
+            System.out.println("3. Hapus Restaurant");
+            System.out.println("4. Kembali");
+            System.out.print("Masukkan Pilihan Anda: ");
+            pilihan = input.nextInt();
+            input.nextLine();
+
+            switch(pilihan) {
+                case 1:
+                    System.out.println("\n=== Daftar Restaurant ===");
+                    for(String restaurantName : restaurants.keySet()) {
+                        System.out.println("\n" + restaurantName + " - " + restaurants.get(restaurantName).getAddress());
+                        System.out.println("Menu: ");
+                        for(Menu menu : restaurants.get(restaurantName).getMenus()) {
+                            System.out.println(menu.getName() + " - " + menu.getPrice());
+                        }
+                    }
                     break;
             }
         }
