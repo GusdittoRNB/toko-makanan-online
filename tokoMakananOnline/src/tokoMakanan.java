@@ -52,7 +52,7 @@ public class tokoMakanan {
 
             switch(pilihan) {
                 case 1:
-                    //customerLogin(input);
+                    customerLogin(input);
                     break;
                 case 2:
                     System.out.print("Masukkan Password: ");
@@ -151,6 +151,25 @@ public class tokoMakanan {
                 default:
                     System.out.println("\nMasukkan Tidak Valid, Silahkan Ulangi");
                     break;
+            }
+        }
+    }
+
+    static void customerLogin(Scanner input) {
+        int pilihan = 0;
+
+        while(pilihan != 3) {
+            //tampilkan menu dari login customer
+            System.out.println("\n=== Customer Login ===");
+            System.out.println("1. Pesan Makanan Atau Minuman");
+            System.out.println("2. Lihat Pesanan");
+            System.out.println("3. Kembali");
+            System.out.print("Masukkan Pilihan Anda: ");
+            pilihan = input.nextInt();
+            input.nextLine();
+
+            switch(pilihan) {
+                case 1:
             }
         }
     }
