@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -157,6 +158,7 @@ public class tokoMakanan {
 
     static void customerLogin(Scanner input) {
         int pilihan = 0;
+        ArrayList<Order> orders = new ArrayList<>();
 
         while(pilihan != 3) {
             //tampilkan menu dari login customer
@@ -170,6 +172,50 @@ public class tokoMakanan {
 
             switch(pilihan) {
                 case 1:
+                    System.out.println("\n==== Restaurants ====");
+                    for (String restaurantName : restaurants.keySet()) {
+                        System.out.println(restaurantName + " - " + restaurants.get(restaurantName).getAddress());
+                    }
+                    System.out.print("\nMasukkan Nama Restaurant: ");
+                    String restaurantName = input.nextLine();
+                    if (!restaurants.containsKey(restaurantName)) {
+                        System.out.println("Restaurant Tersebut Tidak Terdaftar");
+                        break;
+                    }
+
+                    Restaurant restaurant = restaurants.get(restaurantName);
+                    Order newOrder = new Order(restaurant);
+
+                    String inputTambah = "";
+                    while (!inputTambah.equals("n")) {
+                        System.out.println("\n==== " + restaurant.getName() + " ====");
+                        System.out.println("Menu:");
+                        int nomorMenu = 1;
+                        for (Menu menu : restaurant.getMenus()) {
+                            System.out.println(nomorMenu + ". " + menu.getName() + " - " + menu.getPrice());
+                            nomorMenu++;
+                        }
+                        System.out.print("\nMasukkan Nomor Menu Yang Akan Dipesan: ");
+                        int indexMenu = input.nextInt();
+                        System.out.print("Masukkan Jumlahnya: ");
+                        int jumlah = input.nextInt();
+                        input.nextLine();
+
+                        newOrder.addMenu(restaurant.getMenus().get(indexMenu - 1), jumlah);
+
+                        System.out.print("Apakah Ingin Menambah Pesanan Lagi? (y/n): ");
+                        inputTambah = input.nextLine();
+                    }
+
+                    System.out.print("Masukkan Jarak Anda Dengan Restaurant (dalam km): ");
+                    int jarak = input.nextInt();
+
+                    newOrder.setDistance(jarak);
+                    orders.add(newOrder);
+                    System.out.println("\nPesanan Berhasil Diorder");
+                    break;
+                case 2:
+                    
             }
         }
     }
