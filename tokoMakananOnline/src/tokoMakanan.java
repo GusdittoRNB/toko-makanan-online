@@ -215,8 +215,24 @@ public class tokoMakanan {
                     System.out.println("\nPesanan Berhasil Diorder");
                     break;
                 case 2:
-                    
+                    System.out.println("\n==== Orders ====");
+                    for (int i = 0; i < orders.size(); i++) {
+                        Order order = orders.get(i);
+                        System.out.println("\n" + (i + 1) + ". " + order.getRestaurant().getName());
+                        System.out.println("Menu:");
+                        for (Menu menu : order.getMenus().keySet()) {
+                            System.out.println(menu.getName() + " x " + order.getMenus().get(menu));
+                        }
+                        System.out.println("Jarak (ongkir: 10000/km): " + order.getDistance() + " km");
+                        System.out.println("Total Harga: " + order.getTotalPrice());
+                    }
+                    break;
+                case 3:
+                    break;
+                default:
+                    System.out.println("\nMasukkan Tidak Valid, Silahkan Ulangi");
             }
         }
     }
+    
 }
