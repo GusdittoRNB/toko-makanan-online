@@ -1,7 +1,6 @@
 import java.util.HashMap;
 
 class Order {
-    private String customerName;
     private Restaurant restaurant;
     private HashMap<Menu, Integer> menus;
     private int distance;
