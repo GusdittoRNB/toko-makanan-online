@@ -160,6 +160,11 @@ public class tokoMakanan {
         int pilihan = 0;
         ArrayList<Order> orders = new ArrayList<>();
 
+        System.out.print("Masukkan Nama Anda: ");
+        String namaPelanggan = input.nextLine();
+        System.out.print("\nSelamat Datang " + namaPelanggan);
+        System.out.println();
+
         while(pilihan != 3) {
             //tampilkan menu dari login customer
             System.out.println("\n=== Customer Login ===");
@@ -212,22 +217,10 @@ public class tokoMakanan {
 
                     newOrder.setDistance(jarak);
                     orders.add(newOrder);
-                    System.out.println("\nPesanan Berhasil Diorder");
-
-                    System.out.println("\n==== Orderan Anda ====");
-                    for (int i = 0; i < orders.size(); i++) {
-                        Order order = orders.get(i);
-                        System.out.println("\n" + (i + 1) + ". " + order.getRestaurant().getName());
-                        System.out.println("Menu:");
-                        for (Menu menu : order.getMenus().keySet()) {
-                            System.out.println(menu.getName() + " x " + order.getMenus().get(menu));
-                        }
-                        System.out.println("Jarak (ongkir: 10000/km): " + order.getDistance() + " km");
-                        System.out.println("Total Harga: " + order.getTotalPrice());
-                    }
+                    System.out.println("\nPesanan " + namaPelanggan + " Berhasil Diorder");
                     break;
                 case 2:
-                    System.out.println("\n==== Orders ====");
+                    System.out.println("\n==== Orderan " + namaPelanggan + " ====");
                     for (int i = 0; i < orders.size(); i++) {
                         Order order = orders.get(i);
                         System.out.println("\n" + (i + 1) + ". " + order.getRestaurant().getName());
@@ -235,7 +228,7 @@ public class tokoMakanan {
                         for (Menu menu : order.getMenus().keySet()) {
                             System.out.println(menu.getName() + " x " + order.getMenus().get(menu));
                         }
-                        System.out.println("Jarak (ongkir: 10000/km): " + order.getDistance() + " km");
+                        System.out.println("Jarak (ongkir: 5000/km): " + order.getDistance() + " km");
                         System.out.println("Total Harga: " + order.getTotalPrice());
                     }
                     break;

@@ -1,6 +1,7 @@
 import java.util.HashMap;
 
 class Order {
+    private String customerName;
     private Restaurant restaurant;
     private HashMap<Menu, Integer> menus;
     private int distance;
@@ -31,7 +32,7 @@ class Order {
         for (Menu menu : this.menus.keySet()) {
             totalPrice += menu.getPrice() * this.menus.get(menu);
         }
-        totalPrice += this.distance * 10000; // ongkir 10rb/km
+        totalPrice += this.distance * 5000; // ongkir 5rb/km
         return totalPrice;
     }
 
